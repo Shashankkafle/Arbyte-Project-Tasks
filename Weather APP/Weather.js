@@ -24,8 +24,11 @@ function getPosition(position) {
  async function setWeather(){
   let weatherData= await weather
   console.log(weatherData)
-  document.getElementById("location").innerHTML='Location: '+weatherData.timezone
-  document.getElementById("temprature").innerHTML='Temprature: '+weatherData.current.temp
+  console.log(weatherData.timezone.indexOf('/'))
+  // let location=weatherData.timezone.splice(0,weatherData.timezone.indexOf('/'))
+  console.log(location)
+  document.getElementById("location").innerHTML='Location: '
+  document.getElementById("temprature").innerHTML=weatherData.current.temp
   document.getElementById("time").innerHTML='Time: '+new Date().getHours()+":"+new Date().getMinutes()
   document.getElementById("visibiity").innerHTML='Visibility: '+weatherData.current.visibility+'m'
 }
