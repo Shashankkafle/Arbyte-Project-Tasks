@@ -2,6 +2,7 @@ function submit(){
     let name = document.getElementById('name'), email=document.getElementById('email')
     localStorage.setItem(name.value,email.value)
 }
+var container = document.createElement('div')
 function generateTable(){
     var body = document.getElementsByTagName("body")[0]
     var tbl = document.createElement("table")
@@ -39,7 +40,13 @@ function generateTable(){
     
 
     tbl.appendChild(tblBody)
-    body.appendChild(tbl)
+    container.appendChild(tbl)
+    body.appendChild(container)
     tbl.setAttribute("border", "2")
 
 }
+function remove(){
+    var name = document.getElementById('name')
+    localStorage.removeItem(name.value)
+}
+
