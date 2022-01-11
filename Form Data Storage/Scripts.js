@@ -24,7 +24,6 @@ function generateTable(){
     const items = { ...localStorage }
     Object.entries(items).forEach(item => {
         var row = document.createElement('tr')
-
         var rowKeyCell = document.createElement('td')
         var rowKeyCellText = document.createTextNode(item[0])
         rowKeyCell.appendChild(rowKeyCellText)
