@@ -6,11 +6,13 @@ body.appendChild(stop)
 for (let station of data) {
     let container = document.createElement('station')
     // container.innerHTML = `<audio src = ${body.url} onclick=playRadio(${id} id=${id})></audo>`;
-    let image = document.createElement('img')
+    let image = document.createElement('imgageholder')
+    image.innerHTML = `<img src ='${station.image}' onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075906.png';">
+
+                        <img>'`;
     let audio = document.createElement('audio')
     audio.setAttribute('id',id.toString())
     audio.setAttribute('src',station.url)
-    image.setAttribute('src',station.image)
 
     container.innerHTML = station.name
     let name = document.createElement('audio')
