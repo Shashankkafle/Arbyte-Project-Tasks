@@ -1,5 +1,6 @@
 import React from 'react';
 
-export const UserList = () => {
-  return <div></div>;
+export const UserList = ({data}) => {
+  console.log(data)
+  return <div>{data}</div>;
 };
