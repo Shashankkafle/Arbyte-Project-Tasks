@@ -2,22 +2,16 @@ import { SearchBar } from "./SearchBar";
 import { UserList } from "./UserList";
 import { useState } from "react";
 function App() {
-  const [data,setData]=useState('')
-  async function findUsers(e){
-    var a= await fetch("https://api.github.com/users/"+e)
-    a=await a.json()
-    setData(a)
-
-
-    
-  }
+  // const [data,setData]=useState('')
+  const [query,setQuery]=useState('')
   return (
     <div className="App">
-      {/* <input required type={'text'} id="input"></input>
-      <button onClick={(e)=>{findUsers(document.getElementById('input').value)}}></button>
-      {console.log(data)} */}
-      <SearchBar></SearchBar>
-      <UserList data></UserList>
+       <form onSubmit={ (e)=>{ e.preventDefault()
+                            setQuery(document.getElementById('Query').value)}}>
+          <input required autoFocus placeholder='Username'  id='Query'></input>
+          <button>Search</button>
+        </form>      
+        <UserList query={query}></UserList>
     </div>
   );
 }
