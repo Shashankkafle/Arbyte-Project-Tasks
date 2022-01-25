@@ -15,7 +15,12 @@ export default function Profile({user}) {
         var followers= await fetch(a.followers_url)
         followers=await followers.json()  
 
-        // var public_repos= await fetch(a.public_repos_url)
+        // var public_repos= await fetch(a.public_repos_url,{
+        //     method: "GET",
+        //     headers: {
+        //       Authorization: 'token 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' 
+        //     }
+        //   })
         // console.log(public_repos)   
         // var public_repos= await public_repos.json()     
         // console.log(public_repos)   

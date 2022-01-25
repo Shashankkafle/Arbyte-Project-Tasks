@@ -8,7 +8,15 @@ export const UserList = ({query,profiles,setProfiles,setUser}) => {
   },[query]);
   
   async  function  listResult(){
-    var a= await fetch("https://api.github.com/search/users?q="+query+"in:user")
+    var a= await fetch("https://api.github.com/search/users?q="+query+"in:user",{
+      method: "GET",
+      headers: {
+        Authorization: 'token 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' 
+      }
+    })
+    console.log('search started')
+    // var a= await fetch("https://api.github.com/search/users?q="+query+"in:user")
+    console.log('search started')
     a=await a.json()
     setProfiles([])
     a.items.forEach(user => {

@@ -1,14 +1,15 @@
 import { SearchBar } from "./SearchBar";
 import { UserList } from "./UserList";
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import Profile from "./Profile";
 function App() {
   // const [data,setData]=useState('')
   const [query,setQuery]=useState('')
   const [profiles,setProfiles]=useState([])
   const [user,setUser]=useState('')
-  return (
+  {console.log(process.env.REACT_APP_git_token)}
+  return ( 
     <div className="App">
       <Router>
         <div>
