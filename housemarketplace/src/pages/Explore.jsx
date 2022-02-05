@@ -1,15 +1,21 @@
+
 import { Link } from 'react-router-dom'
 import rentCategoryImage from '../assets/jpg/rentCategoryImage.jpg'
 import sellCategoryImage from '../assets/jpg/sellCategoryImage.jpg'
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import Slider from '../components/Slider'
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 function Explore() {
+  
   return(
     <div className='explore'>
         <header>
           <p className="pageHeader">Explore</p>
         </header>
-
         <main>
+          <Slider/>
           <p className="exploreCategoryHeading">Categries</p>
           <div className="exploreCategories">
             <Link  to='/category/rent'>
