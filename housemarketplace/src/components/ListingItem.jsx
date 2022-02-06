@@ -55,7 +55,7 @@ import { ReactComponent as EditIcon } from "../assets/svg/editIcon.svg";
 import bedIcon from "../assets/svg/bedIcon.svg";
 import bathtubIcon from "../assets/svg/bathtubIcon.svg";
 
-const ListingItem = ({ listing, id }) => {
+const ListingItem = ({ listing, id ,onDelete,onEdit}) => {
   return (
     <li className="categoryListing">
       <Link
@@ -90,6 +90,14 @@ const ListingItem = ({ listing, id }) => {
           </div>
         </div>
       </Link>
+      {onDelete && (
+        <DeleteIcon
+          className='removeIcon'
+          fill='rgb(231, 76,60)'
+          onClick={() => onDelete(listing.id, listing.name)}
+        />
+      )}
+      {onEdit && <EditIcon className='editIcon' onClick={() => onEdit(id)} />}
     </li>
   );
 };

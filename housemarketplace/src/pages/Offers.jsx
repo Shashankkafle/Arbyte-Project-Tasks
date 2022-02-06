@@ -33,7 +33,7 @@ function Offers() {
           listingsRef,
           where('offer', '==', true),
           orderBy('timestamp', 'desc'),
-          limit(10)
+          limit(1)
         )
 
         // Execute query
@@ -62,7 +62,45 @@ function Offers() {
 
     fetchListings()
   }, )
+  const onFetchMoreListings= async ()=>{
+    try {
+      // Get reference
+      const listingsRef = collection(db, 'listings')
+      console.log('hello')
+      // Create a query
+      const q = query(
+        listingsRef,
+        where('offer', '==', true),
+        orderBy('timestamp', 'desc'),
+        startAfter(lastFetchedListing),
+        limit(1)
+      )
+      console.log(q)
+      // Execute query
+      const querySnap = await getDocs(q)
+      console.log(querySnap)
 
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1]
+      console.log(lastVisible)
+      setLastFetchedListing(lastVisible)
+
+      const listings = []
+
+      querySnap.forEach((doc) => {
+
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        })
+      })
+
+      setListings((prevState)=>[...prevState,...listings])
+      setLoading(false)
+    } catch (error) {
+      toast.error('Could not fetch listings')
+      console.log(error)
+    }
+  }
   return (
     <div className='category'>
         <header>
@@ -85,6 +123,13 @@ function Offers() {
               ))}
             </ul>
           </main>
+          <br/>
+          <br/>
+          {lastFetchedListing && (
+            <p className='loadMore' onClick={onFetchMoreListings}>
+              Load More
+            </p>
+          )}
         </>
       ) : (
         <p>No offers available</p>

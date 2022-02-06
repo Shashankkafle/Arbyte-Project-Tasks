@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, connectFirestoreEmulator } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
@@ -13,6 +13,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 function Listing() {
     const [listing, setListing] = useState(null)
+    const[geolocation,setGeolocation] = useState(null)
     const [loading, setLoading] = useState(true)
     const [shareLinkCopied, setShareLinkCopied] = useState(false)
 
@@ -31,18 +32,17 @@ function Listing() {
            }
        }
        fetchListing()
-        
+      
    },[navigate,params.listingId])
    if(loading){
        return<Spinner/>
    }
-   {console.log(listing.geolocation.lng)}
+   
   return (
     <main>
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
             {listing.imageUrls.map((url,index)=>( 
                 <SwiperSlide key={index}>
-                        {console.log(listing.imageUrls[index])}
                         <div style={{
                             background: `url(${listing.imageUrls[index]}) center no-repeat`,
                             backgroundSize: 'cover',
@@ -52,7 +52,6 @@ function Listing() {
                 </SwiperSlide>
   ))}
         </Swiper>
-
          <div
         className='shareIconDiv'
         onClick={() => {
@@ -105,12 +104,12 @@ function Listing() {
         </ul>
 
         <p className='listingLocationTitle'>Location</p>
-
         <div className='leafletContainer'>
+          
           <MapContainer
             
             style={{ height: '100%', width: '100%' }}
-            center={[listing.geolocation.lat, listing.geolocation.lng]}
+            center={[listing.latitude, listing.longitude]}
             zoom={13}
             scrollWheelZoom={false}
           >
@@ -118,9 +117,9 @@ function Listing() {
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
             />
-
+            {console.log(typeof(listing.latitude ?? listing.geolocation.lat).toString())}
             <Marker
-              position={[listing.geolocation.lat, listing.geolocation.lng]}
+              position={[(listing.latitude ?? listing.geolocation.lat).toString(), (listing.longitude ?? listing.geolocation.lng).toString()]}
             >
               <Popup>{listing.location}</Popup>
             </Marker>

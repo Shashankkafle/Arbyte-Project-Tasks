@@ -30,6 +30,7 @@ function Slider() {
                 })
            })
            setListings(listings)
+           setLoading(false)
            
         }
         fetchListings()
@@ -37,27 +38,41 @@ function Slider() {
        
         
    },[])
+   if (loading) {
+    return <Spinner />
+  }
+
+  if (listings.length === 0) {
+    return <></>
+  }
+
   return (
-    listings&&( <Swiper slidesPerView={1} pagination={{ clickable: true }}>
-    {listings.map(({data,id})=>( 
-        <SwiperSlide key={id}>
-                <div style={{
-                    background: `url(${data.imageUrls[0]}) center no-repeat`,
-                    backgroundSize: 'cover',
-                }}
-                className='swiperSlideDiv'
-                ></div>
-                <p className='swiperSlideText'>
-                    {data.name}
-                </p>
-                {console.log(data)}
-                <p className="swiperSlidePrice">
-                    ${data.discountedPrice ?? data.regularPrice } 
-                    {data.type === 'rent' && '/ month'}
-                </p>
-        </SwiperSlide>
-))}
-</Swiper>)
+    listings&&( 
+        <>
+        <p className='exploreHeading'>Recommended</p>
+        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+        {listings.map(({data,id})=>( 
+            <SwiperSlide key={id} onClick={() => navigate(`/category/${data.type}/${id}`)}>
+                    <div style={{
+                        background: `url(${data.imageUrls[0]}) center no-repeat`,
+                        backgroundSize: 'cover',
+                        
+                    }}
+                    className='swiperSlideDiv'
+                    ></div>
+                    <p className='swiperSlideText'>
+                        {data.name}
+                    </p>
+                    {console.log(data)}
+                    <p className="swiperSlidePrice">
+                        ${data.discountedPrice ?? data.regularPrice } 
+                        {data.type === 'rent' && '/ month'}
+                    </p>
+            </SwiperSlide>
+    ))}
+    </Swiper>
+    </>)
+    
     );
 }
 
