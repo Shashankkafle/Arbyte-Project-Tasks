@@ -2,12 +2,12 @@ import { useState } from "react";
 
 const AddTask = ({setAddTask,setTasks,tasks}) => {
     const[text,setText] =useState('')  
-    const[btnDisabled,setBtnDisabled] = useState(true)
 
     const handleSubmit = (e)=>{
         e.preventDefault()
         let newTasks=tasks
         newTasks.push(text.toString())
+        localStorage.setItem(tasks.length,text.toString())
         setTasks(newTasks)
         setAddTask(false)
     }

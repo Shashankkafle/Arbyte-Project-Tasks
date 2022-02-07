@@ -1,19 +1,24 @@
-
 import Task from "./Task";
 
-const TaskContainer = ({tasks}) => {
+const TaskContainer = ({tasks,setTasks}) => {
+    const removeTask = (item)=>{
+        let newTasks=tasks
+        console.log('hello')
+        newTasks.filter(instance => instance!=item)
+        setTasks(newTasks)
+    }
     console.log(tasks)
     if(tasks==null||tasks.length==0){
         return <div>No tasks available</div>
     }
   return (
-        <div>
+        <ul>
             {tasks.map((item)=>( 
             
-            <Task item={item}/>
-
+                <Task item={item} removeTask={removeTask}/>
+                
         ))}
-        </div>
+        </ul>
     );
 };
 
