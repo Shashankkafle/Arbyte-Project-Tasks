@@ -96,9 +96,7 @@ function Profile() {
 //       toast.success('Successfully deleted listing')
 //     }
 //   }
-   const onEdit  = async (listingId)=>{
-
-   }
+const onEdit = (listingId) => navigate(`/edit-listing/${listingId}`)
    if(loading){
        return <Spinner/>
    }
