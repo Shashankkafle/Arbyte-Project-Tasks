@@ -1,4 +1,8 @@
 import { useState } from "react";
+import {Form} from "../Components/Syles/Input.style";
+import { Button } from "../Components/Syles/Button.style";
+import CheckIcon from '../icons/greater-than-solid.svg'
+
 
 const AddTask = ({name,setAddTask,setTasks}) => {
     const[text,setText] =useState('')  
@@ -30,13 +34,15 @@ const AddTask = ({name,setAddTask,setTasks}) => {
     }
   return (
 
-            <form onSubmit={handleSubmit}>
-                <h2>
+            <Form onSubmit={handleSubmit}>
+                <label>
                     Enter the new task.
-                </h2>
-                    <input onChange={handleTextChange} type='text' value={text} placeholder='Write a Task.'/>
-                    <button type='submit'>Send</button>
-            </form>
+                    <input onChange={handleTextChange} type='text' value={text} placeholder='Task'/>
+                </label>
+                <Button type='submit'>
+                    <img src={CheckIcon}/>
+                </Button>
+            </Form>
     );
 };
 

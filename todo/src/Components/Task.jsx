@@ -1,5 +1,6 @@
-import  CheckIcon from '../icons/check.svg'
+import {ReactComponent as CheckIcon} from '../icons/square-check-solid.svg'
 import { useEffect } from 'react';
+import { Button } from './Syles/Button.style';
 
 const Task = ({item,setTasks,tasks,name}) => {
     const removeTask = (e)=>{
@@ -10,12 +11,16 @@ const Task = ({item,setTasks,tasks,name}) => {
        localStorage.setItem(name,newTasks)
     }
   return (
+
         <li >
-            <button  onClick={(e)=>removeTask(e)}>
-                <img id={item} src={CheckIcon}/>    
-            </button>
-            {item}
+            <Button  onClick={(e)=>removeTask(e)}>
+                {/* <CheckIcon id={item} />                   */}
+                <CheckIcon fill='#FFFFFF'/>
+            </Button>
+            <span>{item}</span>
+           
         </li>
+
     );
 };
 

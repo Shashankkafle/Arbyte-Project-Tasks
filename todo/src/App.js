@@ -13,7 +13,7 @@ import {BrowserRouter as Router, Routes, Route}  from 'react-router-dom'
 function App() {
   const[name,setName]=useState('')
   const [tasks,setTasks]=useState([])
-  const [addTask,setAddTask]=useState(true)
+  const [addTask,setAddTask]=useState(false)
   const changeAddTask = ()=>{
     setAddTask((prevState)=>!prevState)
   }
@@ -26,7 +26,8 @@ function App() {
   
   return (
     <>
-      <AppContainer>
+
+      
         <Router>
           <Routes>
             <Route path='/'  element={<Login setName={setName}/>}/>
@@ -34,7 +35,7 @@ function App() {
           </Routes>
         </Router>
         
-      </AppContainer>
+
     </>
   );
 }

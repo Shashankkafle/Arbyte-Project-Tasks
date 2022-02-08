@@ -5,5 +5,5 @@ export const AppContainer =  styled.div`
     height: 100vw;
     padding: 0 20px;
     margin: 0 auto;
-    background-color: #B2967D
+    
 `

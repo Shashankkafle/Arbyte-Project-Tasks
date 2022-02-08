@@ -1,4 +1,5 @@
 import Task from "./Task";
+import {List} from "../Components/Syles/List.style";
 
 const TaskList = ({setTasks,tasks,name}) => {
 
@@ -6,12 +7,11 @@ const TaskList = ({setTasks,tasks,name}) => {
         return <div>No tasks available</div>
     }
   return (
-        <div>
-           { console.log(tasks)}
+        <List>
            {tasks.map((item)=>(
                <Task key={item} item={item} setTasks={setTasks} name={name} tasks={tasks}/>
            ))}
-        </div>
+        </List>
     );
 };
 
