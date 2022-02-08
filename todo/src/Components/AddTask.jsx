@@ -1,13 +1,27 @@
 import { useState } from "react";
 
-const AddTask = ({setAddTask,setTasks,tasks}) => {
+const AddTask = ({name,setAddTask,setTasks}) => {
     const[text,setText] =useState('')  
-
+    console.log(name)
     const handleSubmit = (e)=>{
         e.preventDefault()
-        let newTasks=tasks
-        newTasks.push(text.toString())
-        localStorage.setItem(tasks.length,text.toString())
+        let newTasks=[] 
+        console.log()
+        if(localStorage.getItem(name)!==null){
+            {
+                newTasks=localStorage.getItem(name).split(',')
+            }
+            
+        }      
+        if(newTasks.includes(text.toString())){
+            alert('Task alerady exists.')
+            return
+        }
+        if(text.toString()!==''){
+            newTasks.push(text.toString())
+        }
+        console.log(newTasks)
+        localStorage.setItem(name,newTasks)
         setTasks(newTasks)
         setAddTask(false)
     }
