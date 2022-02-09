@@ -1,11 +1,13 @@
 import {ReactComponent as CheckIcon} from '../icons/square-check-solid.svg'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { Button } from './Syles/Button.style';
+import { List } from './Syles/List.style';
 
-const Task = ({item,setTasks,tasks,name}) => {
+const Task = ({item,setTasks,tasks,name}) => { 
     const removeTask = (e)=>{
         let newTasks=tasks
-        console.log(setTasks)
+        console.log(item)
+        console.log(e.target.id)
        newTasks= newTasks.filter(instance => instance!==e.target.id)
        setTasks(newTasks)
        localStorage.setItem(name,newTasks)
@@ -13,12 +15,11 @@ const Task = ({item,setTasks,tasks,name}) => {
   return (
 
         <li >
-            <Button  onClick={(e)=>removeTask(e)}>
-                {/* <CheckIcon id={item} />                   */}
-                <CheckIcon fill='#FFFFFF'/>
-            </Button>
-            <span>{item}</span>
-           
+            <CheckIcon id={item}  onClick={(e)=>removeTask(e) } style={{
+                width:'40px',
+                height:'40px'
+            }}/>
+            <span>{item}</span>           
         </li>
 
     );

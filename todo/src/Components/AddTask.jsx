@@ -7,11 +7,13 @@ import CheckIcon from '../icons/greater-than-solid.svg'
 const AddTask = ({name,setAddTask,setTasks}) => {
     const[text,setText] =useState('')  
     console.log(name)
+    
     const handleSubmit = (e)=>{
         e.preventDefault()
+        setTasks([])
         let newTasks=[] 
-        console.log()
-        if(localStorage.getItem(name)!==null){
+        console.log(text)
+        if(localStorage.getItem(name)!==null&&localStorage.getItem(name)!==''){
             {
                 newTasks=localStorage.getItem(name).split(',')
             }

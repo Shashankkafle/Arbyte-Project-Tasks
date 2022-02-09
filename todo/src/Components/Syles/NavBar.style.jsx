@@ -11,7 +11,4 @@ export const NavBar = styled.nav`
         border: none;
         background-color: #7392B7;
     }
-    p{
-        color: #FFFFF
-    }
 `
