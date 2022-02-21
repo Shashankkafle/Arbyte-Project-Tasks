@@ -4,6 +4,8 @@ const PORT=process.env.PORT||5000
 const connectDB = require('./config/db')
 const dotenv=require('dotenv').config()
 const {errorHandler}= require('./middlewear/errorMiddlewear')
+const cors = require('cors');
+
 
 //connect to database
 
@@ -11,6 +13,7 @@ const {errorHandler}= require('./middlewear/errorMiddlewear')
 connectDB()
 
 const app=express()
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(errorHandler)
