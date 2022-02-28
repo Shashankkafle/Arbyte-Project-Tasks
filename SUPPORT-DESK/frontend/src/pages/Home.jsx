@@ -4,13 +4,13 @@ import {FaQuestionCircle,FaTicketAlt} from 'react-icons/fa'
 function Home() {
   return (
     <section className='heading'>
-      <h1>What do ypu need help with?</h1>
+      <h1>What do you need help with?</h1>
       <p>Please choose form  an option below</p>
       <Link to ='/new-ticket' className='btn btn-reverse btn-block'>
         <FaQuestionCircle/> Create new ticket
       </Link>
       <Link to ='/tickets' className='btn btn-block'>
-        <FaTicketAlt/> View my tckets
+        <FaTicketAlt/> View my tickets
       </Link>
     </section>
   )
